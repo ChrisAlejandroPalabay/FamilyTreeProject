@@ -6,7 +6,7 @@ public class builder {
 
         DbConnection connect = new DbConnection();
         connect.getData();
-        
+
     }
 
 

@@ -28,7 +28,14 @@ public class DbConnection {
             System.out.println("Records from Database");
             while(rs.next()){
                 String fname = rs.getString("firstName");
-                System.out.println(fname);
+                String lname = rs.getString("lastName");
+                boolean gender = rs.getBoolean("gender");
+                String bday = rs.getString("birthday");
+
+                System.out.println(fname +" "+lname+" "+gender+" "+bday);
+                System.out.println();
+                FamilyMember temp = new FamilyMember(fname,lname,gender);
+                System.out.println(temp.getFullName());
             }
         }catch (Exception e){
             e.printStackTrace();
