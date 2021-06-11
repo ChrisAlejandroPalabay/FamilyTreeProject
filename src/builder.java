@@ -5,11 +5,13 @@ public class builder {
 
 
         DbConnection connect = new DbConnection();
+        connect.insert("Draku","Palabay",true,"9/10/2020");
         connect.getData();
 
+
+
+
     }
-
-
 
 }
 

@@ -1,8 +1,5 @@
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DbConnection {
 
@@ -15,6 +12,21 @@ public class DbConnection {
         try{
             con = DriverManager.getConnection("jdbc:sqlite:family.db");
             System.out.println("Connected");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void insert(String fname, String lname, boolean g, String bday){
+        String query = "INSERT INTO familyMember(firstName,lastName,gender,birthday) VALUES(?,?,?,?)";
+        try{
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1,fname);
+            pstmt.setString(2,lname);
+            pstmt.setBoolean(3,g);
+            pstmt.setString(4,bday);
+            pstmt.executeUpdate();
+            System.out.println("Insert Success");
         }catch (Exception e){
             e.printStackTrace();
         }
