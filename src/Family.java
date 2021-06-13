@@ -170,6 +170,11 @@ public class Family {
         return builder.toString();
     }
 
+    public void connectToDatabase(){
+        DbConnection connect = new DbConnection();
+        connect.getData();
+    }
+
 
 
 
