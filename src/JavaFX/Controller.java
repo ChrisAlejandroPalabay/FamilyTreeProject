@@ -7,11 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class Controller {
+public class Controller extends Scene2Controller {
 
     @FXML
     public Parent root;
@@ -19,6 +20,7 @@ public class Controller {
     public Stage stage;
     public ImageView img;
     public TextArea txtarea;
+    public TextField textfield;
     public double x;
     public double y;
 
@@ -44,10 +46,19 @@ public class Controller {
 
     public void switchToScene2(ActionEvent e) throws Exception{
 
-        root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        String name = textfield.getText();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
+        root = loader.load();
+
+        Scene2Controller scene2 = loader.getController();
+        scene2.setLabel(name);
+
+
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+
         stage.show();
 
     }
