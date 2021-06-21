@@ -4,26 +4,26 @@ package JavaFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.layout.HBox;
 
 
 public class Scene1Controller {
 
-    public ImageView img;
+    public HBox box;
     public double x;
     public double y;
 
     @FXML
     public void up(ActionEvent e){
-        img.setX(x+=4);
+        box.setLayoutX(x+=4);
     }
     public void down(ActionEvent e){
-        img.setX(x-=4);
+        box.setLayoutX(x-=4);
     }
     public void left(ActionEvent e){
-        img.setY(y-=4);
+        box.setLayoutY(y-=4);
     }
     public void right(ActionEvent e){
-        img.setY(y+=4);
+        box.setLayoutY(y+=4);
     }
 }
