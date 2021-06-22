@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 public class MainFX extends Application {
 
-    public static Parent root;
 
     public static void main(String[] args) {
         launch(args);
@@ -26,7 +25,7 @@ public class MainFX extends Application {
 
     public void start(Stage stage) throws Exception{
 
-        root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
