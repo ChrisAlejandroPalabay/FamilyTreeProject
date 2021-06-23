@@ -39,28 +39,23 @@ public class Scene1Controller {
         Label lab3 = new Label("The dog");
 
         VBox vBox = new VBox(lab1,lab2,lab3);
-        vBox.setMaxHeight(60);
-        vBox.setMaxWidth(60);
 
-        HBox hbox = new HBox(img,vBox);
-        hbox.prefHeight(60);
-        hbox.prefWidth(60);
-        hbox.setMaxHeight(60);
-        hbox.setMaxWidth(60);
 
-        hbox.setStyle("-fx-border-color: black;");
-        hbox.setLayoutX(x);
-        hbox.setLayoutY(y);
+        HBox hBox = new HBox(vBox);
+        hBox.setStyle("-fx-border-color: black;");
+        hBox.fillHeightProperty();
+        hBox.setLayoutX(x+=30);
+        hBox.setLayoutY(y);
 
-        root.getChildren().add(hbox);
+
+        root.getChildren().add(vBox);
 
 
     }
     public void nextLine(ActionEvent e){
+        x = 0;
         y =+ 40;
     }
-    public void toRight(ActionEvent e){
-        
-    }
+
 
 }
