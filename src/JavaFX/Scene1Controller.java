@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -22,7 +23,8 @@ public class Scene1Controller {
     //X=60
     //Y=50
 
-    public Pane root;
+    @FXML
+    public AnchorPane root;
     public Button btnAdd;
     public Button btnNextLine;
     public double x;
@@ -32,7 +34,7 @@ public class Scene1Controller {
     public void add(ActionEvent e){
         ImageView img = new ImageView("draku.jpg");
         img.setFitWidth(60);
-        img.setFitWidth(60);
+        img.setFitHeight(60);
 
         Label lab1 = new Label("Draku");
         Label lab2 = new Label("Oct 7 1999");
@@ -41,20 +43,23 @@ public class Scene1Controller {
         VBox vBox = new VBox(lab1,lab2,lab3);
 
 
-        HBox hBox = new HBox(vBox);
+        HBox hBox = new HBox(img,vBox);
         hBox.setStyle("-fx-border-color: black;");
         hBox.fillHeightProperty();
-        hBox.setLayoutX(x+=30);
+
+
+        hBox.setLayoutX(x);
         hBox.setLayoutY(y);
 
 
-        root.getChildren().add(vBox);
+        root.getChildren().add(hBox);
 
+        x+=140;
 
     }
     public void nextLine(ActionEvent e){
         x = 0;
-        y =+ 40;
+        y += 70;
     }
 
 
