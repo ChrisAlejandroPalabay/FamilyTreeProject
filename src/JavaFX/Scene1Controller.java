@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Line;
 
 import java.net.URL;
 import java.util.Random;
@@ -32,6 +33,7 @@ public class Scene1Controller {
 
     @FXML
     public void add(ActionEvent e){
+        
         ImageView img = new ImageView("draku.jpg");
         img.setFitWidth(60);
         img.setFitHeight(60);
@@ -60,6 +62,20 @@ public class Scene1Controller {
     public void nextLine(ActionEvent e){
         x = 0;
         y += 70;
+    }
+
+    public void createLine(ActionEvent e){
+        Random r = new Random();
+        int num = r.nextInt(200-1)+1;
+        int num2 = r.nextInt(200-1)+1;;
+        Line line = new Line();
+        line.setStartX(num);
+        line.setEndX(num2);
+        line.setStartY(num);
+        line.setEndY(num2);
+
+        root.getChildren().add(line);
+
     }
 
 

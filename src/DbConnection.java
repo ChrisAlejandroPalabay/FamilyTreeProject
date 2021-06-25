@@ -1,5 +1,6 @@
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DbConnection {
 
@@ -32,7 +33,8 @@ public class DbConnection {
         }
     }
 
-    public void getData(){
+    public ArrayList<FamilyMember> getData(){
+        ArrayList<FamilyMember> list = new ArrayList<>();
         try{
             String query = "SELECT * from familyMember";
             st = con.createStatement();
@@ -44,13 +46,12 @@ public class DbConnection {
                 boolean gender = rs.getBoolean("gender");
                 String bday = rs.getString("birthday");
 
-                System.out.println(fname +" "+lname+" "+gender+" "+bday);
-                System.out.println();
                 FamilyMember temp = new FamilyMember(fname,lname,gender);
-                System.out.println(temp.getFullName());
+                list.add(temp);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        return list;
     }
 }
