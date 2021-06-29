@@ -1,5 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
@@ -7,14 +9,10 @@ import javafx.scene.layout.AnchorPane;
 public class AppController1 {
 
     @FXML
-    public AnchorPane root;
-    public TextArea textArea;
+    public Button btn;
+    public Label label;
 
-    public void load(ActionEvent e){
-        DbConnection conn = new DbConnection();
-        for(FamilyMember person: conn.getData()){
-            textArea.setText(person.getFullName());
-        }
-    }
+
+
 }
 
