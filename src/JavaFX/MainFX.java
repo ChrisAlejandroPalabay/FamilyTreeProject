@@ -27,25 +27,8 @@ public class MainFX extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
-        try{
-            Group root = new Group();
-            root.getChildren().addAll(btn,label);
-            Scene scene = new Scene(root);
-            btn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    label.setText("Works");
-                }
-            });
-            stage.setScene(scene);
-            stage.setHeight(400);
-            stage.setWidth(400);
-            stage.show();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public void start(Stage stage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
 
     }
 

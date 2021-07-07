@@ -19,10 +19,18 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-
 public class Scene1Controller {
 
     @FXML
     public Button btn;
-    public Label label;
+    public AnchorPane root;
+
+    public void load(ActionEvent event) throws Exception{
+        ImageView img = new ImageView("draku.jpg");
+        img.setFitWidth(80);
+        img.setFitHeight(80);
+        root.getChildren().add(img);
+
+    }
 }
+
