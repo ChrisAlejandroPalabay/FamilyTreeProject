@@ -170,6 +170,10 @@ public class Family {
         return builder.toString();
     }
 
+    public String getFullname(String name){
+        return familyMembers.get(indexOf(name)).getFullName();
+    }
+
     public void connectToDatabase(){
         DbConnection connect = new DbConnection();
         connect.getData();
