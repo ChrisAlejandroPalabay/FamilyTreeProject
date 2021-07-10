@@ -9,6 +9,11 @@ public class builder  {
         fam.addSibling("Ac Palabay", "Draku Palabay");
 
         System.out.println(fam.printTree());
+
+        for(FamilyMember p:fam.connectToDatabase()){
+            System.out.println(p);
+        }
+
     }
 
 }

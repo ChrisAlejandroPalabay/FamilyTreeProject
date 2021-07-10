@@ -56,7 +56,7 @@ public class Family {
             }
         }
     }
-    
+
 
 
     private int indexOf(String person){
@@ -123,9 +123,9 @@ public class Family {
         return familyMembers.get(indexOf(name)).getFullName();
     }
 
-    public void connectToDatabase(){
+    public ArrayList<FamilyMember> connectToDatabase(){
         DbConnection connect = new DbConnection();
-        connect.getData();
+        return connect.getData();
     }
 
 
