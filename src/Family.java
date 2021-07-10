@@ -15,99 +15,48 @@ public class Family {
 
 
     public void addFamilyMember(FamilyMember person){
-        if(map.containsKey(person)){
-            System.out.println("Person already exist!");
-        }else {
-            Multimap<String,String> temp = ArrayListMultimap.create();
-            String name = person.firstName + " " + person.lastName;
-            map.put(name,temp);
-            familyMembers.add(person);
-        }
+        Multimap<String,String> temp = ArrayListMultimap.create();
+        String name = person.firstName + " " + person.lastName;
+        map.put(name,temp);
+        familyMembers.add(person);
     }
 
     public void addSibling(String person1, String person2) {
-        if(map.containsKey(person1) && map.containsKey(person2)){
-            if(!checkRelatives(person1).contains(person2)){
-                map.get(person1).put("Sibling/s",person2);
-                map.get(person2).put("Sibling/s",person1);
-            }else {
-                System.out.println("Person already a sibling of "+ person1);
-            }
-        }else{
-            System.out.println("Person does not exist!");
-        }
+        map.get(person1).put("Sibling/s",person2);
+        map.get(person2).put("Sibling/s",person1);
     }
 
     public void addMother(String person1, String person2){
-        if(map.containsKey(person1) && map.containsKey(person2)){
-            if(!checkRelatives(person1).contains(person2)){
-                map.get(person1).put("Mother",person2);
-                map.get(person2).put("Child",person2);
-            }else {
-                System.out.println("Person already a mother of "+ person1);
-            }
-        }else{
-            System.out.println("Person does not exist!");
-        }
+        map.get(person1).put("Mother",person2);
+        map.get(person2).put("Child",person2);
     }
 
     public void addFather(String person1,String person2){
-        if(map.containsKey(person1) && map.containsKey(person2)){
-            if(!checkRelatives(person1).contains(person2)){
-                map.get(person1).put("Father",person2);
-                map.get(person2).put("Child",person2);
-            }else {
-                System.out.println("Person already a father of "+ person1);
-            }
-        }else{
-            System.out.println("Person does not exist!");
-        }
-
+        map.get(person1).put("Father",person2);
+        map.get(person2).put("Child",person2);
     }
 
     public void addChild(String person1, String person2){
-        if(map.containsKey(person1) && map.containsKey(person2)){
-            if(!checkRelatives(person1).contains(person2)){
-                map.get(person1).put("Child",person2);
-                if(familyMembers.get(indexOf(person2)).gender == true){
-                    map.get(person2).put("Father",person1);
-                }else {
-                    map.get(person2).put("Mother",person1);
-                }
-            }else {
-                System.out.println("Person already a child of "+ person1);
-            }
-        }else{
-            System.out.println("Person does not exist!");
+        map.get(person1).put("Child",person2);
+        if(familyMembers.get(indexOf(person2)).gender == true){
+            map.get(person2).put("Father",person1);
+        }else {
+            map.get(person2).put("Mother",person1);
         }
     }
 
     public void addPartner(String person1,String person2){
-        if(map.containsKey(person1) && map.containsKey(person2)){
-            if(!checkRelatives(person1).contains(person2)){
-                if(familyMembers.get(indexOf(person1)).gender != familyMembers.get(indexOf(person2)).gender){
-                    if(familyMembers.get(indexOf(person1)).gender == true){
-                        map.get(person1).put("Wife",person2);
-                        map.get(person2).put("Husband",person1);
-                    }else{
-                        map.get(person1).put("Husband",person2);
-                        map.get(person2).put("Wife",person1);
-                    }
-                }else{
-                    System.out.println("Invalid gender");
-                }
-            }else {
-                System.out.println("Person already a partner of "+ person1);
+        if(familyMembers.get(indexOf(person1)).gender != familyMembers.get(indexOf(person2)).gender){
+            if(familyMembers.get(indexOf(person1)).gender == true){
+                map.get(person1).put("Wife",person2);
+                map.get(person2).put("Husband",person1);
+            }else{
+                map.get(person1).put("Husband",person2);
+                map.get(person2).put("Wife",person1);
             }
-        }else{
-            System.out.println("Person does not exist!");
         }
     }
-
-    public void gender(String person){
-        System.out.println(familyMembers.get(indexOf(person)).getFullName());
-        System.out.println(familyMembers.get(indexOf(person)).gender);
-    }
+    
 
 
     private int indexOf(String person){
