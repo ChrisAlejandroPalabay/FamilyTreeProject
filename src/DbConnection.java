@@ -54,4 +54,22 @@ public class DbConnection {
         }
         return list;
     }
+
+    public ArrayList<String> getChild(){
+        ArrayList<String> list = new ArrayList<>();
+        try{
+            for(int i=0;i<8;i++){
+                String query = "SELECT familyMember.firstName, familyMember.lastName FROM familyMember RIGHT JOIN relations ON familyMember.id = relations.child";
+                st = con.createStatement();
+                rs = st.executeQuery(query);
+                while(rs.next()){
+                    String name = rs.getString("child");
+                    list.add(name);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

@@ -123,9 +123,9 @@ public class Family {
         return familyMembers.get(indexOf(name)).getFullName();
     }
 
-    public ArrayList<FamilyMember> connectToDatabase(){
+    public ArrayList<String> connectToDatabase(){
         DbConnection connect = new DbConnection();
-        return connect.getData();
+        return connect.getChild();
     }
 
 
