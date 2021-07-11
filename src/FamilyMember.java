@@ -1,25 +1,20 @@
 
 
 public class FamilyMember{
-    public String firstName;
-    public String lastName;
+    public String name;
     public boolean gender;
     public String birthDay;
 
 
-    public FamilyMember(String fname){
-        this.firstName = fname;
+    public FamilyMember(String name){
+        this.name = name;
         //this.lastName = lName;
         //this.gender = gender;
 
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstName(String name) {
+        this.name = name;
     }
 
     public void setGender(boolean gender) {
@@ -31,16 +26,9 @@ public class FamilyMember{
     }
 
     public String getFullName(){
-        return firstName +" "+ lastName;
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
     public String getGender() {
         String gender = "Male";
@@ -59,7 +47,7 @@ public class FamilyMember{
 
     @Override
     public int hashCode() {
-        return firstName.hashCode();
+        return name.hashCode();
     }
 
     @Override
@@ -68,12 +56,12 @@ public class FamilyMember{
         if (o == null) return false;
         if (this.getClass() != o.getClass()) return false;
         FamilyMember fm = (FamilyMember) o;
-        return firstName == fm.firstName;
+        return name == fm.name;
     }
 
 
     @Override
     public String toString() {
-        return this.firstName + " " + this.lastName;
+        return this.name;
     }
 }

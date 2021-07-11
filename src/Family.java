@@ -16,8 +16,7 @@ public class Family {
 
     public void addFamilyMember(FamilyMember person){
         Multimap<String,String> temp = ArrayListMultimap.create();
-        String name = person.firstName + " " + person.lastName;
-        map.put(name,temp);
+        map.put(person.name,temp);
         familyMembers.add(person);
     }
 

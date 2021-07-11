@@ -32,7 +32,7 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
-
+// Get all the data from famlymember table
 //    public ArrayList<FamilyMember> getData(){
 //        ArrayList<FamilyMember> list = new ArrayList<>();
 //        try{
@@ -72,5 +72,12 @@ public class DbConnection {
             e.printStackTrace();
         }
         return list;
+    }
+
+    
+    public void addSibling(String person){
+        FamilyMember ac = new FamilyMember("Ac");
+        String q = "SELECT familyMemeber.id from familyMember WHERE familyMember.name = person";
+
     }
 }
