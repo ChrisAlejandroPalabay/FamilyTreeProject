@@ -123,10 +123,16 @@ public class Family {
         return familyMembers.get(indexOf(name)).getFullName();
     }
 
-    public ArrayList<String> connectToDatabase(){
+    public Family connectToDatabase(){
+        Family tempTree = new Family();
         DbConnection connect = new DbConnection();
-        return connect.getChild();
+        for (String person: connect.getFamilyMembers()){
+            tempTree.addFamilyMember(new FamilyMember(person));
+        }
+        return tempTree;
     }
+
+
 
 
 

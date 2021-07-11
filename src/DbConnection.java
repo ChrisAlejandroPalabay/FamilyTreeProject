@@ -33,40 +33,41 @@ public class DbConnection {
         }
     }
 
-    public ArrayList<FamilyMember> getData(){
-        ArrayList<FamilyMember> list = new ArrayList<>();
-        try{
-            String query = "SELECT * from familyMember";
-            st = con.createStatement();
-            rs = st.executeQuery(query);
-            System.out.println("Records from Database");
-            while(rs.next()){
-                String fname = rs.getString("firstName");
-                String lname = rs.getString("lastName");
-                boolean gender = rs.getBoolean("gender");
-                String bday = rs.getString("birthday");
+//    public ArrayList<FamilyMember> getData(){
+//        ArrayList<FamilyMember> list = new ArrayList<>();
+//        try{
+//            String query = "SELECT * from familyMember";
+//            st = con.createStatement();
+//            rs = st.executeQuery(query);
+//            System.out.println("Records from Database");
+//            while(rs.next()){
+//                String fname = rs.getString("firstName");
+//                String lname = rs.getString("lastName");
+//                boolean gender = rs.getBoolean("gender");
+//                String bday = rs.getString("birthday");
+//
+//                FamilyMember temp = new FamilyMember(fname,lname,gender);
+//                list.add(temp);
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return list;
+//    }
 
-                FamilyMember temp = new FamilyMember(fname,lname,gender);
-                list.add(temp);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    public ArrayList<String> getChild(){
+    public ArrayList<String> getFamilyMembers(){
         ArrayList<String> list = new ArrayList<>();
         try{
-            for(int i=0;i<8;i++){
-                String query = "SELECT familyMember.firstName, familyMember.lastName FROM familyMember RIGHT JOIN relations ON familyMember.id = relations.child";
-                st = con.createStatement();
-                rs = st.executeQuery(query);
-                while(rs.next()){
-                    String name = rs.getString("child");
-                    list.add(name);
-                }
+            String query = "SELECT familyMember.name\n" +
+                        "FROM familyMember\n" +
+                        "INNER JOIN relations ON familyMember.id = relations.id";
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            while(rs.next()){
+                String name = rs.getString("name");
+                list.add(name);
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }

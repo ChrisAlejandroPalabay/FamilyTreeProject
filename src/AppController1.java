@@ -27,32 +27,32 @@ public class AppController1 {
 
     }
 
-    public void generateTree(ActionEvent e) throws Exception{
-        Family fam = new Family();
-        fam.addFamilyMember(new FamilyMember("Ac","Palabay",true));
-        fam.addFamilyMember(new FamilyMember("Father","Palabay",true));
-        fam.addFamilyMember(new FamilyMember("Mother","Palabay",true));
-        fam.addFamilyMember(new FamilyMember("Brother","Palabay",true));
-
-        int times = 4;
-        for(int i=0;i<times;i++){
-            VBox vBox = new VBox();
-
-            Label l1 = new Label("Person");
-
-            ImageView img = new ImageView("draku.jpg");
-            img.setFitHeight(80);
-            img.setFitWidth(80);
-
-            vBox.getChildren().addAll(img,l1);
-            vBox.setLayoutX(x);
-            vBox.setLayoutY(y);
-            root.getChildren().add(vBox);
-            x+=5;
-            y+=8;
-            System.out.println("clicked");
-        }
-    }
+//    public void generateTree(ActionEvent e) throws Exception{
+//        Family fam = new Family();
+//        fam.addFamilyMember(new FamilyMember("Ac","Palabay",true));
+//        fam.addFamilyMember(new FamilyMember("Father","Palabay",true));
+//        fam.addFamilyMember(new FamilyMember("Mother","Palabay",true));
+//        fam.addFamilyMember(new FamilyMember("Brother","Palabay",true));
+//
+//        int times = 4;
+//        for(int i=0;i<times;i++){
+//            VBox vBox = new VBox();
+//
+//            Label l1 = new Label("Person");
+//
+//            ImageView img = new ImageView("draku.jpg");
+//            img.setFitHeight(80);
+//            img.setFitWidth(80);
+//
+//            vBox.getChildren().addAll(img,l1);
+//            vBox.setLayoutX(x);
+//            vBox.setLayoutY(y);
+//            root.getChildren().add(vBox);
+//            x+=5;
+//            y+=8;
+//            System.out.println("clicked");
+//        }
+//    }
 
 
 }
