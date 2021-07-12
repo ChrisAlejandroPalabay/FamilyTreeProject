@@ -74,10 +74,14 @@ public class DbConnection {
         return list;
     }
 
-    
-    public void addSibling(String person){
+
+    public void addSibling(String person) throws Exception{
         FamilyMember ac = new FamilyMember("Ac");
-        String q = "SELECT familyMemeber.id from familyMember WHERE familyMember.name = person";
+        String q = "SELECT\n" +
+                "familyMember.id FROM familyMember WHERE familyMember.name = (SELECT familyMember.name FROM familyMember WHERE name = ?)";
+
+        PreparedStatement prepStat = con.prepareStatement(q);
+        prepStat.setString(1,person);
 
     }
 }
