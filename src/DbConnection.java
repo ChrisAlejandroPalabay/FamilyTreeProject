@@ -55,12 +55,47 @@ public class DbConnection {
 //        return list;
 //    }
 
+
+    public ArrayList<String> getPersons(){
+        ArrayList<String> list = new ArrayList<>();
+        try{
+            String query = "SELECT familyMember.name FROM familyMember";
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            while(rs.next()){
+                String name = rs.getString("name");
+                list.add(name);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public ArrayList<String> getFamilyMembers(){
         ArrayList<String> list = new ArrayList<>();
         try{
+            String query = "SELECT familyMember.name FROM familyMember INNER JOIN relations ON familyMember.id = relations.id";
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            while(rs.next()){
+                String name = rs.getString("name");
+                list.add(name);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ArrayList<String> getFathers(){
+        ArrayList<String> list = new ArrayList<>();
+        try{
             String query = "SELECT familyMember.name\n" +
-                        "FROM familyMember\n" +
-                        "INNER JOIN relations ON familyMember.id = relations.id";
+                    "FROM familyMember\n" +
+                    "INNER JOIN relations ON familyMember.id = relations.father;";
             st = con.createStatement();
             rs = st.executeQuery(query);
             while(rs.next()){
@@ -75,13 +110,17 @@ public class DbConnection {
     }
 
 
-    public void addSibling(String person) throws Exception{
-        FamilyMember ac = new FamilyMember("Ac");
-        String q = "SELECT\n" +
-                "familyMember.id FROM familyMember WHERE familyMember.name = (SELECT familyMember.name FROM familyMember WHERE name = ?)";
+//Test insert
+    public void addSibling(String person){
+        try{
+            String q = "SELECT\n" +
+                    "familyMember.id FROM familyMember WHERE familyMember.name = (SELECT familyMember.name FROM familyMember WHERE name = ?)";
 
-        PreparedStatement prepStat = con.prepareStatement(q);
-        prepStat.setString(1,person);
+            PreparedStatement prepStat = con.prepareStatement(q);
+            prepStat.setString(1,person);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
 }
