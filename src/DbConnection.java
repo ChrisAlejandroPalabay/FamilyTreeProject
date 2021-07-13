@@ -93,9 +93,7 @@ public class DbConnection {
     public ArrayList<String> getFathers(){
         ArrayList<String> list = new ArrayList<>();
         try{
-            String query = "SELECT familyMember.name\n" +
-                    "FROM familyMember\n" +
-                    "INNER JOIN relations ON familyMember.id = relations.father;";
+            String query = "SELECT familyMember.name FROM familyMember INNER JOIN relations ON familyMember.id = relations.father;";
             st = con.createStatement();
             rs = st.executeQuery(query);
             while(rs.next()){

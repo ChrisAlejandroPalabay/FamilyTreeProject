@@ -34,7 +34,7 @@ public class Family {
 
     public void addFather(String person1,String person2){
         map.get(person1).put("Father",person2);
-        map.get(person2).put("Child",person2);
+        //map.get(person2).put("Child",person2);
     }
 
     public void addChild(String person1, String person2){
@@ -139,9 +139,8 @@ public class Family {
             tempTree.addFamilyMember(new FamilyMember(person));
             for(String familyMember: database.getFamilyMembers()){
                 tempTree.addToTree(familyMember);
-                for(String father: database.getFathers()){
-                    //NUll Pointer excepttion 
-                    tempTree.addSibling(familyMember,father);
+                for(String p: database.getFathers()){
+                    tempTree.addFather(person,p);
                 }
             }
 

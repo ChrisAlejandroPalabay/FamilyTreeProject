@@ -5,7 +5,7 @@ public class builder  {
 
         Family fam = new Family();
 
-        System.out.println(fam.connectToDatabase().tree());
+        System.out.println(fam.connectToDatabase().printTree());
 
 
 
