@@ -13,13 +13,11 @@ public class Family {
         familyMembers = new ArrayList<>();
     }
 
-    public void addToTree(String person){
-        Multimap<String,String> temp = ArrayListMultimap.create();
-        map.put(person,temp);
-    }
 
     public void addFamilyMember(FamilyMember person){
         familyMembers.add(person);
+        Multimap<String,String> temp = ArrayListMultimap.create();
+        map.put(person.name,temp);
     }
 
     public void addSibling(String person1, String person2) {
@@ -132,21 +130,7 @@ public class Family {
         return familyMembers.get(indexOf(name)).getFullName();
     }
 
-    public Family connectToDatabase(){
-        Family tempTree = new Family();
-        DbConnection database = new DbConnection();
-        for (String person: database.getPersons()){
-            tempTree.addFamilyMember(new FamilyMember(person));
-            for(String familyMember: database.getFamilyMembers()){
-                tempTree.addToTree(familyMember);
-                for(String p: database.getFathers()){
-                    tempTree.addFather(person,p);
-                }
-            }
 
-        }
-        return tempTree;
-    }
 
 
 
