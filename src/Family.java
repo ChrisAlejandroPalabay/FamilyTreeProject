@@ -118,18 +118,18 @@ public class Family {
         return builder.toString();
     }
 
-    public HashMap tree(){
-        return map;
-    }
-
-    public ArrayList getPeople(){
+    public ArrayList<FamilyMember> getPeople(){
         return familyMembers;
     }
 
-    public String getFullname(String name){
-        return familyMembers.get(indexOf(name)).getFullName();
+    public Family connectToDatabase(){
+        Family fam = new Family();
+        DbConnection connection = new DbConnection();
+        for(FamilyMember people: connection.getData()){
+            fam.addFamilyMember(people);
+        }
+        return fam;
     }
-
 
 
 

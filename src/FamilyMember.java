@@ -1,19 +1,21 @@
 
 
 public class FamilyMember{
+    public int id;
     public String name;
     public boolean gender;
     public String birthDay;
 
 
-    public FamilyMember(String name){
+    public FamilyMember(int id,String name,boolean gender, String birthDay){
+        this.id = id;
         this.name = name;
-        //this.lastName = lName;
-        //this.gender = gender;
+        this.gender = gender;
+        this.birthDay = birthDay;
 
     }
 
-    public void setFirstName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -59,6 +61,10 @@ public class FamilyMember{
         return name == fm.name;
     }
 
+
+    public String getInfo(){
+        return "ID: " + this.id + "\n"+"NAME: "+ this.name  + "\n"+"GENDER: "+ this.gender  + "\n"+"BIRTHDAY: "+ this.birthDay + "\n";
+    }
 
     @Override
     public String toString() {

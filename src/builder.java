@@ -5,11 +5,15 @@ public class builder  {
 
         Family fam = new Family();
 
-        System.out.println(fam.connectToDatabase().printFamily("Aundrea Palabay"));
+        System.out.println("==============");
+        System.out.println(fam.connectToDatabase().getPeople());
+        System.out.println("==============");
+        System.out.println();
 
 
-
-
+        for(int i=0;i < fam.connectToDatabase().getPeople().size();i++ ){
+            System.out.println(fam.connectToDatabase().getPeople().get(i).getInfo());
+        }
     }
 
 }
