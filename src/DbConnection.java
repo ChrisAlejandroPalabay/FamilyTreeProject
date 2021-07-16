@@ -121,4 +121,27 @@ public class DbConnection {
 
     }
 
+    //test
+    public void getalltest(){
+        try{
+            String query = "SELECT *\n" +
+                    "FROM\n" +
+                    "  relations r\n" +
+                    "  INNER JOIN familyMember c ON r.id = c.id\n" +
+                    "  INNER JOIN familyMember f ON r.father = f.id\n" +
+                    "  INNER JOIN familyMember g ON r.mother = g.id\n" +
+                    "  INNER JOIN familyMember h ON r.child = h.id";
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            while(rs.next()){
+                String relationsID = rs.getString("name:1");
+                //String relationsfather = rs.getString("name:1");
+                System.out.println( "Name: " +relationsID);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
