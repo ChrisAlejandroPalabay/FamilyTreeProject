@@ -46,6 +46,10 @@ public class FamilyMember{
         return birthDay;
     }
 
+    public int getId(){
+        return id;
+    }
+
 
     @Override
     public int hashCode() {

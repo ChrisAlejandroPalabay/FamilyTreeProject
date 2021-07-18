@@ -32,7 +32,7 @@ public class DbConnection {
 //        }
 //    }
 
-    public ArrayList<FamilyMember> getData(){
+    public ArrayList<FamilyMember> getFromfamilyMember(){
         ArrayList<FamilyMember> listOfPeople = new ArrayList<>();
         try{
             String query = "SELECT * from familyMember";
@@ -54,57 +54,80 @@ public class DbConnection {
         return listOfPeople;
     }
 
-
-    public ArrayList<String> getPersons(){
-        ArrayList<String> list = new ArrayList<>();
-        try{
-            String query = "SELECT familyMember.name FROM familyMember";
+    public ArrayList<Integer> getIdFromrelations(){
+        ArrayList<Integer> list = new ArrayList();
+        try {
+            String query = "SELECT id FROM relations";
             st = con.createStatement();
             rs = st.executeQuery(query);
-            while(rs.next()){
-                String name = rs.getString("name");
-                list.add(name);
+            while (rs.next()){
+                int id = rs.getInt("id");
+                list.add(id);
             }
 
-        }catch (Exception e){
+        }catch(Exception e){
             e.printStackTrace();
         }
+
         return list;
     }
 
-    public ArrayList<String> getFamilyMembers(){
-        ArrayList<String> list = new ArrayList<>();
-        try{
-            String query = "SELECT familyMember.name FROM familyMember INNER JOIN relations ON familyMember.id = relations.id";
+    public ArrayList<Integer> getFatherFromrelations(){
+        ArrayList<Integer> list = new ArrayList();
+        try {
+            String query = "SELECT father FROM relations";
             st = con.createStatement();
             rs = st.executeQuery(query);
-            while(rs.next()){
-                String name = rs.getString("name");
-                list.add(name);
+            while (rs.next()){
+                int father = rs.getInt("father");
+                list.add(father);
             }
 
-        }catch (Exception e){
+        }catch(Exception e){
             e.printStackTrace();
         }
+
         return list;
     }
 
-    public ArrayList<String> getFathers(){
-        ArrayList<String> list = new ArrayList<>();
-        try{
-            String query = "SELECT familyMember.name FROM familyMember INNER JOIN relations ON familyMember.id = relations.father;";
+    public ArrayList<Integer> getMotherFromrelations(){
+        ArrayList<Integer> list = new ArrayList();
+        try {
+            String query = "SELECT mother FROM relations";
             st = con.createStatement();
             rs = st.executeQuery(query);
-            while(rs.next()){
-                String name = rs.getString("name");
-                list.add(name);
+            while (rs.next()){
+                int mother = rs.getInt("mother");
+                list.add(mother);
             }
 
-        }catch (Exception e){
+        }catch(Exception e){
             e.printStackTrace();
         }
+
         return list;
     }
+
+    public ArrayList<Integer> getChildFromrelations(){
+        ArrayList<Integer> list = new ArrayList();
+        try {
+            String query = "SELECT child FROM relations";
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()){
+                int child = rs.getInt("child");
+                list.add(child);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+
+
 
 
 //Test insert
@@ -122,26 +145,6 @@ public class DbConnection {
     }
 
     //test
-    public void getalltest(){
-        try{
-            String query = "SELECT *\n" +
-                    "FROM\n" +
-                    "  relations r\n" +
-                    "  INNER JOIN familyMember c ON r.id = c.id\n" +
-                    "  INNER JOIN familyMember f ON r.father = f.id\n" +
-                    "  INNER JOIN familyMember g ON r.mother = g.id\n" +
-                    "  INNER JOIN familyMember h ON r.child = h.id";
-            st = con.createStatement();
-            rs = st.executeQuery(query);
-            while(rs.next()){
-                String relationsID = rs.getString("name:1");
-                //String relationsfather = rs.getString("name:1");
-                System.out.println( "Name: " +relationsID);
-            }
 
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 
 }

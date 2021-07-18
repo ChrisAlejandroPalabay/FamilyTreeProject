@@ -13,11 +13,13 @@ public class Family {
         familyMembers = new ArrayList<>();
     }
 
-
-    public void addFamilyMember(FamilyMember person){
+    public void addPerson(FamilyMember person){
         familyMembers.add(person);
+    }
+
+    public void addFamilyMember(String name){
         Multimap<String,String> temp = ArrayListMultimap.create();
-        map.put(person.name,temp);
+        map.put(name,temp);
     }
 
     public void addSibling(String person1, String person2) {
@@ -68,7 +70,6 @@ public class Family {
         }
         return res;
     }
-
 
     public String printTree(){
         StringBuilder builder = new StringBuilder();
@@ -121,15 +122,42 @@ public class Family {
     public ArrayList<FamilyMember> getPeople(){
         return familyMembers;
     }
+    public HashMap getMap(){
+        return map;
+    }
+    public String getbyid(int id){
+        String name = "";
+        for(FamilyMember person: this.familyMembers){
+            if(person.getId() == id){
+                name = person.name;
+                break;
+            }
+        }
+        return name;
+    }
 
     public Family connectToDatabase(){
         Family fam = new Family();
         DbConnection connection = new DbConnection();
-        for(FamilyMember people: connection.getData()){
-            fam.addFamilyMember(people);
+        for(FamilyMember person: connection.getFromfamilyMember()){
+            fam.addPerson(person);
+            for(int id: connection.getIdFromrelations()){
+                for(FamilyMember p : fam.getPeople()){
+                    if(p.getId() == id){
+                        fam.addFamilyMember(p.name);
+                    }
+                }
+            }
         }
+
         return fam;
     }
+
+    public String testconnect(){
+            return getbyid(1);
+    }
+
+
 
 
 
