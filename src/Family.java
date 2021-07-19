@@ -136,21 +136,19 @@ public class Family {
         return name;
     }
 
-    public Family connectToDatabase(){
-        Family fam = new Family();
+    public void connectToDatabase(){
         DbConnection connection = new DbConnection();
-        for(FamilyMember person: connection.getFromfamilyMember()){
-            fam.addPerson(person);
+        for(FamilyMember person1: connection.getFromfamilyMember()){
+            familyMembers.add(person1);
             for(int id: connection.getIdFromrelations()){
-                for(FamilyMember p : fam.getPeople()){
-                    if(p.getId() == id){
-                        fam.addFamilyMember(p.name);
+                for(FamilyMember person2: familyMembers){
+                    if(person2.id == id){
+                        addFamilyMember(person2.name);
+                        break;
                     }
                 }
             }
         }
-
-        return fam;
     }
 
     public String testconnect(){
