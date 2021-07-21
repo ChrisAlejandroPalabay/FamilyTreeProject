@@ -34,7 +34,7 @@ public class Family {
 
     public void addFather(String person1,String person2){
         map.get(person1).put("Father",person2);
-        //map.get(person2).put("Child",person2);
+        map.get(person2).put("Child",person2);
     }
 
     public void addChild(String person1, String person2){
@@ -144,6 +144,14 @@ public class Family {
                 for(FamilyMember person2: familyMembers){
                     if(person2.id == id){
                         addFamilyMember(person2.name);
+                        for(int id2: connection.getFatherFromrelations()){
+                            for(FamilyMember person3: familyMembers){
+                                if(person3.id == id2){
+                                    addFather(person1.name,person3.name);
+                                }
+
+                            }
+                        }
                         break;
                     }
                 }

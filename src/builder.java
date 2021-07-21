@@ -6,7 +6,11 @@ public class builder  {
 
         Family fam = new Family();
 
-        //fam.connectToDatabase();
+
+        fam.addFamilyMember("Ac Palabay");
+        fam.addFamilyMember("Man Drake Palabay");
+
+        fam.addFather("Ac Palabay","Man Drake Palabay");
 
         System.out.println(fam.printTree());
 
