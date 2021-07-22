@@ -13,13 +13,10 @@ public class Family {
         familyMembers = new ArrayList<>();
     }
 
-    public void addPerson(FamilyMember person){
-        familyMembers.add(person);
-    }
-
-    public void addFamilyMember(String name){
+    public void addFamilyMember(FamilyMember person){
         Multimap<String,String> temp = ArrayListMultimap.create();
-        map.put(name,temp);
+        familyMembers.add(person);
+        map.put(person.name,temp);
     }
 
     public void addSibling(String person1, String person2) {
@@ -29,12 +26,12 @@ public class Family {
 
     public void addMother(String person1, String person2){
         map.get(person1).put("Mother",person2);
-        map.get(person2).put("Child",person2);
+        map.get(person2).put("Child",person1);
     }
 
     public void addFather(String person1,String person2){
         map.get(person1).put("Father",person2);
-        map.get(person2).put("Child",person2);
+        map.get(person2).put("Child",person1);
     }
 
     public void addChild(String person1, String person2){
@@ -125,6 +122,7 @@ public class Family {
     public HashMap getMap(){
         return map;
     }
+
     public String getbyid(int id){
         String name = "";
         for(FamilyMember person: this.familyMembers){
@@ -137,26 +135,19 @@ public class Family {
     }
 
     public void connectToDatabase(){
-        DbConnection connection = new DbConnection();
-        for(FamilyMember person1: connection.getFromfamilyMember()){
-            familyMembers.add(person1);
-            for(int id: connection.getIdFromrelations()){
-                for(FamilyMember person2: familyMembers){
-                    if(person2.id == id){
-                        addFamilyMember(person2.name);
-                        for(int id2: connection.getFatherFromrelations()){
-                            for(FamilyMember person3: familyMembers){
-                                if(person3.id == id2){
-                                    addFather(person1.name,person3.name);
-                                }
-
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
+        DbConnection con = new DbConnection();
+        for(FamilyMember p1: con.getFromfamilyMember()){
+            addFamilyMember(p1);
         }
+
+        addFather(getbyid(1),getbyid(5));
+        addMother(getbyid(1),getbyid(4));
+        addChild(getbyid(1),getbyid(6));
+
+        addFather(getbyid(2),getbyid(5));
+        addMother(getbyid(2),getbyid(4));
+        addChild(getbyid(2),getbyid(3));
+
     }
 
     public String testconnect(){
