@@ -134,25 +134,7 @@ public class Family {
         return name;
     }
 
-    public void connectToDatabase(){
-        DbConnection con = new DbConnection();
-        for(FamilyMember p1: con.getFromfamilyMember()){
-            addFamilyMember(p1);
-        }
 
-        addFather(getbyid(1),getbyid(5));
-        addMother(getbyid(1),getbyid(4));
-        addChild(getbyid(1),getbyid(6));
-
-        addFather(getbyid(2),getbyid(5));
-        addMother(getbyid(2),getbyid(4));
-        addChild(getbyid(2),getbyid(3));
-
-    }
-
-    public String testconnect(){
-            return getbyid(1);
-    }
 
 
 

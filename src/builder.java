@@ -4,10 +4,10 @@ public class builder  {
 
     public static void main(String[] args) {
 
-        Family fam = new Family();
-
-        fam.connectToDatabase();
-        System.out.println(fam.printTree());
+        DbConnection con = new DbConnection();
+        for(String d: con.getData()){
+            System.out.println(d);
+        }
 
     }
 
