@@ -134,6 +134,13 @@ public class Family {
         return name;
     }
 
+    public void connectToDb(){
+        DbConnection con = new DbConnection();
+        for(FamilyMember person: con.getFamilyMembers()){
+            addFamilyMember(person);
+        }
+    }
+
 
 
 

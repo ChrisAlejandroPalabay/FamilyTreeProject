@@ -4,11 +4,11 @@ public class builder  {
 
     public static void main(String[] args) {
 
-        DbConnection con = new DbConnection();
-        for(String d: con.getData()){
-            System.out.println(d);
-        }
-
+        Family tree = new Family();
+        tree.connectToDb();
+        System.out.println(tree.printTree());
+        System.out.println("=======");
+        System.out.println(tree.printFamily("Ac Oliver"));
     }
 
 }
