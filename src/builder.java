@@ -1,12 +1,15 @@
 import java.awt.image.DataBuffer;
+import java.util.ArrayList;
 
 public class builder  {
 
     public static void main(String[] args) {
 
-        Family tree = new Family();
-        tree.mapValuesFromDB();
-        System.out.println(tree.printTree());
+
+        DbConnection con =  new DbConnection();
+        for(ArrayList list: con.test()){
+            System.out.println(list);
+        }
     }
 
 }

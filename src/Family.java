@@ -162,6 +162,10 @@ public class Family {
         getPeopleFromDB();
         for(String personName: con.getRelationsName()){
             addFamilyMember(personName);
+            for(String father: con.getRelationsFather()){
+                addFamilyMember(father);
+                addFather(personName,father);
+            }
         }
     }
 

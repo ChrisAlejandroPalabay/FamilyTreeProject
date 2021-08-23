@@ -1,6 +1,7 @@
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DbConnection {
 
@@ -135,5 +136,38 @@ public class DbConnection {
         }
         return data;
 
+    }
+
+    public ArrayList<ArrayList<String>> test(){
+        ArrayList<ArrayList<String>> list =  new ArrayList<>();
+        String query = "SELECT *\n" +
+                "FROM\n" +
+                "  relations r\n" +
+                "  INNER JOIN familyMember n ON r.id = n.id\n" +
+                "  INNER JOIN familyMember f ON r.father = f.id\n" +
+                "  INNER JOIN familyMember m ON r.mother = m.id\n" +
+                "  INNER JOIN familyMember c ON r.child = c.id;\n";
+
+        try{
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            int index = 0;
+
+            while(rs.next()){
+                list.add(new ArrayList<>());
+                String name = rs.getString(6);
+                String father = rs.getString(10);
+                String mother = rs.getString(14);
+                String child = rs.getString(18);
+                list.get(index).add(0,name);
+                list.get(index).add(1,father);
+                list.get(index).add(2,mother);
+                list.get(index).add(3,child);
+                index++;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
     }
 }
