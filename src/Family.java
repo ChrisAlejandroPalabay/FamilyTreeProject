@@ -7,16 +7,21 @@ public class Family {
 
     private HashMap<String, Multimap<String, String>> map;
     public ArrayList<FamilyMember> familyMembers;
+    public DbConnection con;
 
     public Family() {
         map = new HashMap<>();
         familyMembers = new ArrayList<>();
+        con = new DbConnection();
     }
 
-    public void addFamilyMember(FamilyMember person){
-        Multimap<String,String> temp = ArrayListMultimap.create();
+    public void addPeople(FamilyMember person){
         familyMembers.add(person);
-        map.put(person.name,temp);
+    }
+
+    public void addFamilyMember(String name){
+        Multimap<String,String> temp = ArrayListMultimap.create();
+        map.put(name,temp);
     }
 
     public void addSibling(String person1, String person2) {
@@ -134,10 +139,29 @@ public class Family {
         return name;
     }
 
-    public void connectToDb(){
-        DbConnection con = new DbConnection();
+    public boolean doesExist(String name){
+        boolean exist = true;
+        for(FamilyMember p: this.familyMembers){
+            if(p.name.equals(name)){
+                exist = true;
+                break;
+            }else{
+                exist = false;
+            }
+        }
+        return exist;
+    }
+
+    private void getPeopleFromDB(){
         for(FamilyMember person: con.getFamilyMembers()){
-            addFamilyMember(person);
+            addPeople(person);
+        }
+    }
+
+    public void mapValuesFromDB(){
+        getPeopleFromDB();
+        for(String personName: con.getRelationsName()){
+            addFamilyMember(personName);
         }
     }
 
