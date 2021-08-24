@@ -155,20 +155,25 @@ public class Family {
     private void getPeopleFromDB(){
         for(FamilyMember person: con.getFamilyMembers()){
             addPeople(person);
+            addFamilyMember(person.name);
+
         }
     }
 
-    public void mapValuesFromDB(){
+    public void mapValues(){
         getPeopleFromDB();
-        for(String personName: con.getRelationsName()){
-            addFamilyMember(personName);
-            for(String father: con.getRelationsFather()){
-                addFamilyMember(father);
-                addFather(personName,father);
+        for(ArrayList<String> list2: con.relationsValues()){
+            for(int i=0;i<list2.size();i++){
+                if(i == 1){
+                    addFather(list2.get(0),list2.get(i));
+                }else if(i == 2){
+                    addMother(list2.get(0),list2.get(i));
+                }else if(i == 3){
+                    addChild(list2.get(0),list2.get(i));
+                }
             }
         }
     }
-
 
 
 
