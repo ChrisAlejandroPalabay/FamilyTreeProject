@@ -46,10 +46,10 @@ public class DbConnection {
         String query = "SELECT *\n" +
                 "FROM\n" +
                 "  relations r\n" +
-                "  INNER JOIN familyMember n ON r.id = n.id\n" +
-                "  INNER JOIN familyMember f ON r.father = f.id\n" +
-                "  INNER JOIN familyMember m ON r.mother = m.id\n" +
-                "  INNER JOIN familyMember c ON r.child = c.id;\n";
+                "  LEFT JOIN familyMember n ON r.id = n.id\n" +
+                "  LEFT JOIN familyMember f ON r.father = f.id\n" +
+                "  LEFT JOIN familyMember m ON r.mother = m.id\n" +
+                "  LEFT JOIN familyMember c ON r.child = c.id;\n";
 
         try{
             st = con.createStatement();

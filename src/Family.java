@@ -165,11 +165,23 @@ public class Family {
         for(ArrayList<String> list2: con.relationsValues()){
             for(int i=0;i<list2.size();i++){
                 if(i == 1){
-                    addFather(list2.get(0),list2.get(i));
+                    if(list2.get(i) == null){
+
+                    }else{
+                        addFather(list2.get(0),list2.get(i));
+                    }
                 }else if(i == 2){
-                    addMother(list2.get(0),list2.get(i));
+                    if(list2.get(i) == null){
+
+                    }else {
+                        addMother(list2.get(0),list2.get(i));
+                    }
                 }else if(i == 3){
-                    addChild(list2.get(0),list2.get(i));
+                    if(list2.get(i) == null){
+
+                    }else {
+                        addChild(list2.get(0),list2.get(i));
+                    }
                 }
             }
         }

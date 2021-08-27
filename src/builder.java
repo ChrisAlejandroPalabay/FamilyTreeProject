@@ -9,6 +9,11 @@ public class builder  {
        tree.mapValues();
         System.out.println(tree.printTree());
 
+        DbConnection con = new DbConnection();
+
+        for(ArrayList v:con.relationsValues()){
+            System.out.println(v);
+        }
 
     }
 
